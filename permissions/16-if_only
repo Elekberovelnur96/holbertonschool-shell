@@ -1,2 +1,15 @@
 #!/bin/bash
-[ "$(stat -c %U hello)" = "guillaume" ] && chown vincent hello
+# Script to change the owner of 'hello' to 'vincent'
+# only if it is currently owned by 'guillaume'.
+
+# Get the current owner of the file 'hello'
+# stat -c %U extracts the username of the owner
+current_owner=$(stat -c %U hello)
+
+# Check if the current owner is 'guillaume'
+if [ "$current_owner" = "guillaume" ]; then
+    # If the owner is 'guillaume', change it to 'vincent'
+    # Note: This command often requires superuser privileges (sudo) to execute.
+    chown vincent hello
+fi
+
